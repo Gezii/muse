@@ -3,3 +3,23 @@
 #chunkDiv {height: 20px;width: 100%;margin-left:0px;background-color:#69A2F0}
 
 #dragging {height: 50px;width: 70px;margin-left:0px;background-color:red;position:absolute}
+
+
+
+/*内边距*/
+.p-l10{padding-left: 10px;}
+.p-l20{padding-left: 20px;}
+.p-b20{padding-bottom: 20px;}
+.p-t20{padding-top: 20px;}
+.p-r10{padding-right: 10px;}
+/*外边距*/
+.m-0{margin: 0;}
+.m-t30{margin-top: 30px;}
+.m-t10{margin-top: 10px;}
+.m-b30{margin-bottom: 30px;}
+.m-r20{margin-right: 20px;}
+.m-l10{margin-left: 15px;}
+.m-r5{margin-right:5px;}
+.m-lr5{margin:0 5px;}
+.m-lr10{margin: 0 10px;}
+.m-tb15{margin: 15px 0px;}

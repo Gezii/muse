@@ -4,6 +4,11 @@
     <meta charset="UTF-8">
     <title>angular</title>
     <link  href="../../bootstrap/css/bootstrap.css" rel="stylesheet" >
+    <link  href="../../css/test.css" rel="stylesheet" >
+    <link  href="../../css/phones/app.css" rel="stylesheet" >
+    <link  href="../../css/phones/animations.css" rel="stylesheet" >
+
+    <script src="../../js/lib/jquery-1.10.2.min.js"></script>
     <script src="../../bootstrap/js/bootstrap.js"></script>
     <script src="../../js/lib/angular.js"></script>
     <script src="../../js/angularjs/controllers.js"></script>
@@ -14,21 +19,59 @@
     </div>
 
     <div class="container">
-        <p>Nothing here {{'yet' + '!'}}</p>
-        <p>5 + 3 = {{5 + 3}}</p>
+        <div class="container-fluid">
+            <div class="">5 + 3 = {{5 + 3}}</div>
+            <table class="table">
+                <tr><th>row number</th><th ng-repeat="i in nums">{{i}}</th></tr>
+                <tr><td>numbers</td><td ng-repeat="i in nums">{{i}}</td></tr>
+            </table>
 
-        <p>智能机种类：{{phones.length}}</p>
-        <ul class="list-inline">
-            <li ng-repeat="phone in phones" class="">
-                {{phone.name}}
-                <p>{{phone.snippet}}</p>
-            </li>
-        </ul>
+            <div class="h4">
+                <span>智能机种类：{{phones1.length}}</span>
+                <span class="p-l20">
+                    <select ng-model="orderProp1">
+                        <option value="name">名称排序</option>
+                        <option value="age">年份排序</option>
+                    </select>
+                </span>
+                <span class="p-l10">排序：{{orderProp1}}</span>
 
-        <table class="table">
-            <tr><th>row number</th><th ng-repeat="i in nums">{{i}}</th></tr>
-            <tr><td>numbers</td><td ng-repeat="i in nums">{{i}}</td></tr>
-        </table>
+                <span class="p-l20">查询：<input ng-model="query1" class="input-sm" placeholder="请输入查询条件"></span>
+                <span class="p-l10">已输入：{{query1}}</span>
+            </div>
+
+            <ul class="list-inline">
+                <li ng-repeat="phone in phones1 | filter:query1 | orderBy:orderProp1">
+                    {{phone.name}}
+                    <p>{{phone.snippet}}</p>
+                </li>
+            </ul>
+
+            <div class="h4">
+                <span>智能机种类：{{phones.length}}</span>
+                <span class="p-l20">
+                    <select ng-model="orderProp">
+                        <option value="name">名称排序</option>
+                        <option value="age">年份排序</option>
+                    </select>
+                </span>
+                <span class="p-l10">排序：{{orderProp}}</span>
+
+                <span class="p-l20">查询：<input ng-model="query" class="input-sm" placeholder="请输入查询条件"></span>
+                <span class="p-l10">已输入：{{query}}</span>
+            </div>
+
+            <ul class="phones">
+                <li ng-repeat="phone in phones | filter:query | orderBy:orderProp" class="thumbnail">
+                    <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="../../{{phone.imageUrl}}"></a>
+                    <a href="#/phones/{{phone.id}}">{{phone.name}}</a>
+                    <p>{{phone.snippet}}</p>
+                </li>
+            </ul>
+
+            <span>{{phones | json}}</span>
+
+        </div>
     </div>
 
 </body>
