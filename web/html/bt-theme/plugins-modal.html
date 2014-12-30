@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Theme template for Bootstrap</title>
+
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+    <style>
+        .carousel {
+            height: 600px;
+            background-color: #000;
+        }
+        .carousel .item{
+            height: 600px;
+            background-color: #000;
+        }
+        .carousel img{
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body role="document">
+
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="##">Bootstrap</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="theme.html">Home</a> </li>
+                    <li><a href="theme.html">css</a> </li>
+                    <li class="active"><a href="##">js</a> </li>
+                    <li class="dropdown">
+                        <a href="##" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="##">Action</a> </li>
+                            <li><a href="##">Another action</a> </li>
+                            <li><a href="##">Something else here</a> </li>
+                            <li class="divider"></li>
+                            <li class="dropdown-header">Nav header</li>
+                            <li><a href="##">Separated link</a> </li>
+                            <li><a href="##">Another separated link</a> </li>
+                        </ul>
+                    </li>
+                    <form action="##" class="navbar-form navbar-right" rol="search">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="请输入关键字">
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
+                    </form>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div style="margin-top: 50px"></div>
+
+    <!-- 滚动图片广告 -->
+    <div id="main-carousel-slide" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#main-carousel-slide" data-slide-to="0" class="active"></li>
+            <li data-target="#main-carousel-slide" data-slide-to="1"></li>
+            <li data-target="#main-carousel-slide" data-slide-to="2"></li>
+            <li data-target="#main-carousel-slide" data-slide-to="3"></li>
+        </ol>
+        <div class="carousel-inner" role="listbox">
+            <div class="item active">
+                <img src="../../img/carousel/00.jpg" alt="">
+                <div class="carousel-caption"></div>
+            </div>
+            <div class="item">
+                <img src="../../img/carousel/01.jpg" alt="">
+                <div class="carousel-caption"></div>
+            </div>
+            <div class="item">
+                <img src="../../img/carousel/02.jpg" alt="">
+                <div class="carousel-caption"></div>
+            </div>
+            <div class="item">
+                <img src="../../img/carousel/03.jpg" alt="">
+                <div class="carousel-caption"></div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#main-carousel-slide" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#main-carousel-slide" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+
+    <div class="container theme-showcase" role="main">
+
+
+
+        <div class="page-header"><h1>模态弹出框</h1></div>
+        <a href="##" class="btn btn-primary" data-toggle="modal" data-target="#modal1">点我O(∩_∩)O~</a>
+        <button type="button" class="btn btn-success" id="btnModal2">点点我(≧▽≦)/</button>
+
+
+        <!-- 模态窗口 -->
+        <!-- tabindex="-1" 控制键盘esc键启用 -->
+        <!-- fade 开启动画效果 -->
+        <div class="modal fade" id="modal1" role="dialog" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title">模态弹出窗属性表</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>加在需弹出模态窗口的按钮上面的属性</h4>
+                        <div class="thumbnail">
+                            <img src="../../img/attr/modal-attribute.jpg" style="height: 570px; width: 600px;">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="modal2" role="dialog" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title">JavaScript触发时</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>属性设置：</h4>
+                        <div class="thumbnail">
+                            <img src="../../img/attr/modal-js-attr.jpg" style="height: 384px; width: 902px;">
+                        </div>
+                        <h4>调用方法：</h4>
+                                <pre>
+                                    $(function(){
+                                        $(".btn").click(function(){
+                                            $("#mymodal").modal({
+                                                keyboard:false
+                                            });
+                                        });
+                                    });
+                                </pre>
+                        <h4>参数设置：</h4>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>参数</th>
+                                <th>使用方法</th>
+                                <th>描述</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>toggle</td>
+                                <td>$(“#mymodal”).modal(“toggle”)</td>
+                                <td>触发时，反转模态弹出窗的状态。如果模态弹出窗是显示的，则关闭；反之，如果模态弹出窗是关闭的，则显示</td>
+                            </tr>
+                            <tr>
+                                <td>show</td>
+                                <td>$(“#mymodal”).modal(“show”)</td>
+                                <td>触发时，显示模态弹出窗</td>
+                            </tr>
+                            <tr>
+                                <td>hide</td>
+                                <td>$(“#mymodal”).modal(“hide”)</td>
+                                <td>触发时，关闭模态弹出窗</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h4>事件设置：</h4>
+                        <table class="table">
+                            <thead><tr><th>事件类型</th><th>描述</th></tr></thead>
+                            <tbody>
+                            <tr>
+                                <td>show.bs.modal</td>
+                                <td>在show方法调用时立即触发（尚未显示之前）；如果单击了一个元素，那么该元素将作为事件的relatedTarget属性</td>
+                            </tr>
+                            <tr>
+                                <td>shown.bs.modal</td>
+                                <td>该事件在模态弹出窗完全显示给用户之后（并且等CSS动画完成之后）触发；如果单击了一个元素，那么该元素将作为事件的relatedTarget事件</td>
+                            </tr>
+                            <tr>
+                                <td>hide.bs.modal</td>
+                                <td>在hide方法调用时（但还未关闭隐藏）立即触发</td>
+                            </tr>
+                            <tr>
+                                <td>hidden.bs.modal</td>
+                                <td>该事件在模态弹出窗完全隐藏之后（并且CSS动画漂完成之后）触发</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h4>调用方法：</h4>
+                                <pre>
+                                    $('#myModal').on('hidden.bs.modal', function (e) {
+                                        // 处理代码...
+                                    });
+                                </pre>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+    <div class="footer" style="margin-bottom: 100px;"></div>
+
+<script src="../../js/lib/jquery-1.10.2.min.js"></script>
+<script src="../../bootstrap/js/bootstrap.js"></script>
+<script>
+    $(function(){
+//        $(".btn").click(function(){
+//            $("#modal1").modal("toggle");
+//        });
+        $("#btnModal2").click(function(){
+            $("#modal2").modal({
+                keyboard : false
+            });
+        });
+    });
+</script>
+</body>
+</html>
