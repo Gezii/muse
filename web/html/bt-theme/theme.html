@@ -15,13 +15,14 @@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target=".navbar-collapse">
+                <!-- collapsed带d的这个样式才有效（窄屏的情况下菜单缩起来） -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="##">Bootstrap</a>
+                <a class="navbar-brand" href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -29,15 +30,15 @@
                     <li><a href="##">css</a> </li>
                     <li><a href="plugins-modal.html">js</a> </li>
                     <li class="dropdown">
-                        <a href="##" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="##">Action</a> </li>
-                            <li><a href="##">Another action</a> </li>
-                            <li><a href="##">Something else here</a> </li>
+                        <a href="##" class="dropdown-toggle" data-toggle="dropdown">Browser <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" id="dropdown-menu-list">
+                            <li><a href="#tab-chrome">Chrome</a> </li>
+                            <li><a href="#tab-firefox">Firefox</a> </li>
+                            <li><a href="#tab-safari">Safari</a> </li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Nav header</li>
-                            <li><a href="##">Separated link</a> </li>
-                            <li><a href="##">Another separated link</a> </li>
+                            <li><a href="#tab-opera">Opera</a> </li>
+                            <li><a href="#tab-ie">IE</a> </li>
                         </ul>
                     </li>
                     <form action="##" class="navbar-form navbar-right" rol="search">

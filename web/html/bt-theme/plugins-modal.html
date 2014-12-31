@@ -27,37 +27,32 @@
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target=".navbar-collapse">
+                <!-- collapsed带d的这个样式才有效（窄屏的情况下菜单缩起来） -->
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="##">Bootstrap</a>
+                <a class="navbar-brand" href="http://getbootstrap.com/" target="_blank">Bootstrap</a>
             </div>
-            <div class="navbar-collapse collapse">
+            <div class="navbar-collapse collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="theme.html">Home</a> </li>
                     <li><a href="theme.html">css</a> </li>
                     <li class="active"><a href="##">js</a> </li>
                     <li class="dropdown">
-                        <a href="##" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="##">Action</a> </li>
-                            <li><a href="##">Another action</a> </li>
-                            <li><a href="##">Something else here</a> </li>
+                        <a href="##" class="dropdown-toggle" data-toggle="dropdown">Browser <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" id="dropdown-menu-list">
+                            <li><a href="#tab-chrome">Chrome</a> </li>
+                            <li><a href="#tab-firefox">Firefox</a> </li>
+                            <li><a href="#tab-safari">Safari</a> </li>
                             <li class="divider"></li>
                             <li class="dropdown-header">Nav header</li>
-                            <li><a href="##">Separated link</a> </li>
-                            <li><a href="##">Another separated link</a> </li>
+                            <li><a href="#tab-opera">Opera</a> </li>
+                            <li><a href="#tab-ie">IE</a> </li>
                         </ul>
                     </li>
-                    <form action="##" class="navbar-form navbar-right" rol="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="请输入关键字">
-                        </div>
-                        <button type="submit" class="btn btn-default">搜索</button>
-                    </form>
                 </ul>
             </div>
         </div>
@@ -71,6 +66,7 @@
             <li data-target="#main-carousel-slide" data-slide-to="1"></li>
             <li data-target="#main-carousel-slide" data-slide-to="2"></li>
             <li data-target="#main-carousel-slide" data-slide-to="3"></li>
+            <li data-target="#main-carousel-slide" data-slide-to="4"></li>
         </ol>
         <div class="carousel-inner" role="listbox">
             <div class="item active">
@@ -89,6 +85,10 @@
                 <img src="../../img/carousel/03.jpg" alt="">
                 <div class="carousel-caption"></div>
             </div>
+            <div class="item">
+                <img src="../../img/carousel/04.jpg" alt="">
+                <div class="carousel-caption"></div>
+            </div>
         </div>
         <a class="left carousel-control" href="#main-carousel-slide" role="button" data-slide="prev">
             <span class="glyphicon glyphicon-chevron-left"></span>
@@ -100,11 +100,7 @@
         </a>
     </div>
 
-
-
     <div class="container theme-showcase" role="main">
-
-
 
         <div class="page-header"><h1>模态弹出框</h1></div>
         <a href="##" class="btn btn-primary" data-toggle="modal" data-target="#modal1">点我O(∩_∩)O~</a>
@@ -158,7 +154,7 @@
                                     $(function(){
                                         $(".btn").click(function(){
                                             $("#mymodal").modal({
-                                                keyboard:false
+                                                keyboard:false //阻止键盘ESC键关闭窗口
                                             });
                                         });
                                     });
@@ -228,6 +224,15 @@
         </div>
 
 
+        <hr>
+        <ul class="nav nav-tabs" role="tablist" id="tab-list">
+            <li role="presentation" class="active"><a href="#tab-chrome" role="tab" data-toggle="tab">Chrome</a> </li>
+            <li role="presentation"><a href="#tab-firefox" role="tab" data-toggle="tab">Firefox</a> </li>
+            <li role="presentation"><a href="#tab-safari" role="tab" data-toggle="tab">Safari</a> </li>
+            <li role="presentation"><a href="#tab-opera" role="tab" data-toggle="tab">Opera</a> </li>
+            <li role="presentation"><a href="#tab-ie" role="tab" data-toggle="tab">IE</a> </li>
+        </ul>
+
 
     </div>
 
@@ -245,6 +250,12 @@
                 keyboard : false
             });
         });
+
+        $("#dropdown-menu-list a").on("click", function(){
+            var href = $(this).attr("href");
+            $("#tab-list a[href='" + href + "']").tab("show");
+        });
+
     });
 </script>
 </body>
