@@ -8,9 +8,49 @@
     <title></title>
 </head>
 <body>
-    <hello></hello>
-    <trans>
-        <div>指令内部内容</div>
-    </trans>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <hello></hello>
+            <hello></hello>
+            <hello></hello>
+            <hello></hello>
+            <div class="row">
+                <trans>
+                    <div>指令内部内容</div>
+                </trans>
+            </div>
+            <div class="row">
+                <div ng-controller="DirCtrl1">
+                    <loader howToLoad="loadData1()"><div class="label label-info">滑动加载1</div></loader>
+                </div>
+            </div>
+            <div class="row">
+                <div ng-controller="DirCtrl2">
+                    <loader howToLoad="loadData2()"><div class="label label-primary">滑动加载2</div></loader>
+                </div>
+            </div>
+            <div class="row">
+                <div ng-controller="DirCtrl1">
+                    Ctrl: <input type="text" ng-model="ctrlFlavor" class='form-control'/><br>
+                    Directive: <drink flavor="ctrlFlavor"></drink>
+                </div>
+            </div>
+            <div class="row">
+                <div ng-controller="DirCtrl1">
+                    <greeting greet="sayHello(name)"></greeting>
+                    <greeting greet="sayHello(name)"></greeting>
+                    <greeting greet="sayHello(name)"></greeting>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
 </body>
 </html>
