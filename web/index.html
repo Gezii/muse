@@ -12,7 +12,7 @@
 
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/animate/animate.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -53,20 +53,35 @@
 
     <div class="container theme-showcase" role="main">
         <div class="row">
-            <div class="col-sm-4">
-                <div class="list-group">
-                    <a href="#" class="list-group-item active">Hello world! This is my exercise.</a>
-                    <a href="html/exercise/move.html" class="list-group-item">小动画</a>
-                    <a href="html/angularjs/angular.html" class="list-group-item">Angular</a>
-                    <a href="html/bt-theme/theme.html" class="list-group-item">Bootstrap theme</a>
-                    <a href="http://127.0.0.1:3000" class="list-group-item">Nodejs</a>
+            <div class="col-md-4">
+                <div class="list-group" id="item-list">
+                    <a href="#" class="list-group-item active"><span class="animated swing">Hello world! This is my exercise.</span></a>
+                    <a href="html/animate/animate.html" class="list-group-item"><span class="animated swing">animate</span></a>
+                    <a href="html/angularjs/angular.html" class="list-group-item"><span class="animated swing">Angular</span></a>
+                    <a href="html/bt-theme/theme.html" class="list-group-item"><span class="animated swing">Bootstrap theme</span></a>
+                    <a href="http://127.0.0.1:3000" class="list-group-item"><span class="animated swing">Nodejs</span></a>
+                    <a href="html/exercise/move.html" class="list-group-item"><span class="animated swing">exercise</span></a>
                 </div>
             </div>
+
         </div>
 
     </div>
 
     <script src="js/lib/jquery-1.10.2.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+<script>
+    $(function(){
+        $("#item-list a")
+                .mouseover(function(e){
+                    var $span = $(this).children();
+                    $span.removeClass().addClass("animated rubberBand");
+                })
+                .mouseout(function(e){
+                    var $span = $(this).children();
+                    $span.removeClass("animated rubberBand");
+                });
+    });
+</script>
 </body>
 </html>
