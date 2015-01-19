@@ -105,6 +105,7 @@
         <div class="page-header"><h1>模态弹出框</h1></div>
         <a href="##" class="btn btn-primary" data-toggle="modal" data-target="#modal1">点我O(∩_∩)O~</a>
         <button type="button" class="btn btn-success" id="btnModal2">点点我(≧▽≦)/</button>
+        <button type="button" class="btn btn-info" id="btnModal3">点我html2canvas</button>
 
 
         <!-- 模态窗口 -->
@@ -240,6 +241,7 @@
 
 <script src="../../js/lib/jquery-1.10.2.min.js"></script>
 <script src="../../bootstrap/js/bootstrap.js"></script>
+<script src="../../js/lib/html2canvas.js"></script>
 <script>
     $(function(){
 //        $(".btn").click(function(){
@@ -254,6 +256,18 @@
         $("#dropdown-menu-list a").on("click", function(){
             var href = $(this).attr("href");
             $("#tab-list a[href='" + href + "']").tab("show");
+        });
+
+        /**
+         * dom对象转成canvas对象然后保存base64编码处理得到图像
+         */
+        $("#btnModal3").on('click',function(){
+            html2canvas(document.getElementById('main-carousel-slide'), {
+                onrendered: function(canvas){
+                    var html_canvas = canvas.toDataURL();
+                    console.log(html_canvas);
+                }
+            });
         });
 
     });

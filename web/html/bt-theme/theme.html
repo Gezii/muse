@@ -611,7 +611,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="tableRow2">
             <div class="col-md-6">
                 <table class="table table-bordered">
                     <thead>
@@ -678,6 +678,7 @@
                     </tr>
                     </tbody>
                 </table>
+                <button type="button" class="btn btn-info" id="html2canvas">点我html2canvas</button>
             </div>
         </div>
 
@@ -886,5 +887,22 @@
 
 <script src="../../js/lib/jquery-1.10.2.min.js"></script>
 <script src="../../bootstrap/js/bootstrap.js"></script>
+<script src="../../js/lib/html2canvas.js"></script>
+<script>
+    $(function(){
+        /**
+         * dom对象转成canvas对象然后保存base64编码处理得到图像
+         */
+        $("#html2canvas").on('click',function(){
+            html2canvas(document.getElementById('tableRow2'), {
+                onrendered: function(canvas){
+                    var html_canvas = canvas.toDataURL();
+                    console.log(html_canvas);
+                }
+            });
+        });
+
+    });
+</script>
 </body>
 </html>
