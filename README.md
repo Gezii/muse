@@ -4,3 +4,6 @@ Bootstrap
 Angular
 Require
 Nodejs
+Echarts
+Animate
+d3.js
