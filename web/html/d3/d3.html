@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>d3</title>
+    <link rel="stylesheet" href="../../bootstrap/css/bootstrap.css">
+    <script src="../../js/lib/d3.js" type="application/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <div style="padding-top: 50px;"></div>
+        <div class="row">
+            <p>Hello World!</p>
+        </div>
+        <div class="row">
+            <p>Hello World!</p>
+        </div>
+        <div class="row">
+            <div id="circle"></div>
+        </div>
+    </div>
+
+<script>
+    //页面在1s没逐渐变成黑色
+    d3.select("body").transition()
+            .duration(1000)
+            .style("background-color", "black");
+
+    //选中所有的p标签并伸直随机颜色
+    d3.selectAll("p").style("color", function() {
+        return "hsl(" + Math.random() * 360 + ",100%,50%)";
+    });
+
+    //选中所有p标签绑定数据数组，对p标签设置字体大小
+    d3.selectAll("p")
+            .data([15, 18, 23, 42])
+            .style("font-size", function(d){ return d + "px"; });
+//    d3.selectAll("p").style("color", function(d, i) {
+//        return i % 2 ? "#fff" : "#eee";
+//    });
+
+    //选中所有p标签绑定数据数组，增加新的p标签，是body下的p标签总个数为数组长度
+    d3.select("body").selectAll("p")
+            .data([4, 8, 15, 16, 23, 42])
+            .enter().append("p")
+            .text(function(d) { return "I’m number " + d + "!"; });
+
+    d3.select("#circle").transition()
+            .duration(750)
+            .delay(function(d, i){ return i * 10; })
+            .attr("r", function(d){ return Math.sqrt(d * 5);});
+</script>
+</body>
+</html>
