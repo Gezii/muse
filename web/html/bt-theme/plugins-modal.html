@@ -22,7 +22,7 @@
     </style>
 
 </head>
-<body role="document">
+<body role="document" id="bodyid">
 
     <div class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -224,6 +224,29 @@
             </div>
         </div>
 
+        <div class="modal fade" id="modal3" role="dialog" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title">页面截图</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>页面截图</h4>
+                        <div class="thumbnail">
+                            <img src="../../img/attr/modal-attribute.jpg" style="height: 570px; width: 600px;">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="button" class="btn btn-primary">保存</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <hr>
         <ul class="nav nav-tabs" role="tablist" id="tab-list">
@@ -262,9 +285,13 @@
          * dom对象转成canvas对象然后保存base64编码处理得到图像
          */
         $("#btnModal3").on('click',function(){
-            html2canvas(document.getElementById('main-carousel-slide'), {
+            html2canvas(document.getElementById('bodyid'), {
                 onrendered: function(canvas){
                     var html_canvas = canvas.toDataURL();
+                    $("#modal3 img").attr("src", html_canvas);
+                    $("#modal3").modal({
+                        keyboard : false
+                    });
                     console.log(html_canvas);
                 }
             });
