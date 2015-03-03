@@ -14,8 +14,13 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/animate/animate.css">
     <link rel="stylesheet" href="css/main.css">
+    <script src="js/lib/jquery-1.10.2.min.js"></script>
+    <script src="js/lib/angular.js"></script>
+    <script src="js/lib/angular-ui-router.js"></script>
+
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body ng-app="appRouter">
 
     <div class="navbar navbar-default">
         <div class="container">
@@ -60,18 +65,22 @@
                     <a href="html/angularjs/angular.html" class="list-group-item"><span class="animated swing">Angular</span></a>
                     <a href="html/bt-theme/theme.html" class="list-group-item"><span class="animated swing">Bootstrap theme</span></a>
                     <a href="http://127.0.0.1:3000" class="list-group-item"><span class="animated swing">Nodejs</span></a>
-                    <a href="html/echarts/map.html" class="list-group-item"><span class="animated swing">Echarts</span></a>
-                    <a href="html/exercise/move.html" class="list-group-item"><span class="animated swing">exercise</span></a>
+                    <a ui-sref="echartMap" href="#/echart.map" class="list-group-item"><span class="animated swing">Echarts</span></a>
+                    <a ui-sref="move" href="#/move" class="list-group-item"><span class="animated swing">exercise</span></a>
                     <a href="html/d3/d3.html" class="list-group-item"><span class="animated swing">d3.js</span></a>
                 </div>
+            </div>
+
+            <div class="dol-md-8">
+                <div ui-view></div>
             </div>
 
         </div>
 
     </div>
 
-    <script src="js/lib/jquery-1.10.2.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+
+
 <script>
     $(function(){
         $("#item-list a")
@@ -84,6 +93,36 @@
                     $span.removeClass("animated rubberBand");
                 });
     });
+
+    var appRouter = angular.module('appRouter', ['ui.router']);
+    appRouter.config(function($stateProvider, $urlRouterProvider) {
+        //
+        // For any unmatched url, redirect to /state1
+        $urlRouterProvider.otherwise("");
+        //
+        // Now set up the states
+        $stateProvider
+                .state('state1', {
+                    url: "/state1",
+                    templateUrl: "partials/state1.html"
+                })
+                .state('echartMap', {
+                    url: "/map",
+                    templateUrl: "html/echarts/map.html"
+                })
+                .state('move', {
+                    url: "/move",
+                    templateUrl: "html/exercise/move.html"
+                })
+                .state('state2.list', {
+                    url: "/list",
+                    templateUrl: "partials/state2.list.html",
+                    controller: function($scope) {
+                        $scope.things = ["A", "Set", "Of", "Things"];
+                    }
+                });
+    });
+
 </script>
 </body>
 </html>
