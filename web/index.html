@@ -14,10 +14,10 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="css/animate/animate.css">
     <link rel="stylesheet" href="css/main.css">
+
     <script src="js/lib/jquery-1.10.2.min.js"></script>
     <script src="js/lib/angular.js"></script>
     <script src="js/lib/angular-ui-router.js"></script>
-
     <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body ng-app="appRouter">
@@ -58,28 +58,27 @@
 
     <div class="container theme-showcase" role="main">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <div class="list-group" id="item-list">
-                    <a href="#" class="list-group-item active"><span class="animated swing">Hello world! This is my exercise.</span></a>
-                    <a href="html/animate/animate.html" class="list-group-item"><span class="animated swing">animate</span></a>
-                    <a href="html/angularjs/angular.html" class="list-group-item"><span class="animated swing">Angular</span></a>
-                    <a href="html/bt-theme/theme.html" class="list-group-item"><span class="animated swing">Bootstrap theme</span></a>
-                    <a href="http://127.0.0.1:3000" class="list-group-item"><span class="animated swing">Nodejs</span></a>
+                    <a href="#" class="list-group-item active"><span class="animated swing">Hello world!</span></a>
+                    <a ui-sref="angular" href="#/angular" class="list-group-item"><span class="animated swing">Angular</span></a>
+                    <a ui-sref="animate" href="#/animate" class="list-group-item"><span class="animated swing">animate</span></a>
                     <a ui-sref="echartMap" href="#/echart.map" class="list-group-item"><span class="animated swing">Echarts</span></a>
-                    <a ui-sref="move" href="#/move" class="list-group-item"><span class="animated swing">exercise</span></a>
-                    <a href="html/d3/d3.html" class="list-group-item"><span class="animated swing">d3.js</span></a>
+                    <a ui-sref="d3Tree" href="#/d3Tree" class="list-group-item"><span class="animated swing">d3.js</span></a>
+                    <a ui-sref="jitTree" href="#/jitTree" class="list-group-item"><span class="animated swing">jit.js</span></a>
+                    <a ui-sref="move" href="#/move" class="list-group-item"><span class="animated swing">move</span></a>
+                    <a href="html/bt-theme/theme.html" class="list-group-item"><span class="animated swing">Bootstrap</span></a>
+                    <a href="http://127.0.0.1:3000" class="list-group-item"><span class="animated swing">Nodejs</span></a>
                 </div>
             </div>
 
-            <div class="dol-md-8">
+            <div class="col-md-10">
                 <div ui-view></div>
             </div>
 
         </div>
 
     </div>
-
-
 
 <script>
     $(function(){
@@ -93,36 +92,7 @@
                     $span.removeClass("animated rubberBand");
                 });
     });
-
-    var appRouter = angular.module('appRouter', ['ui.router']);
-    appRouter.config(function($stateProvider, $urlRouterProvider) {
-        //
-        // For any unmatched url, redirect to /state1
-        $urlRouterProvider.otherwise("");
-        //
-        // Now set up the states
-        $stateProvider
-                .state('state1', {
-                    url: "/state1",
-                    templateUrl: "partials/state1.html"
-                })
-                .state('echartMap', {
-                    url: "/map",
-                    templateUrl: "html/echarts/map.html"
-                })
-                .state('move', {
-                    url: "/move",
-                    templateUrl: "html/exercise/move.html"
-                })
-                .state('state2.list', {
-                    url: "/list",
-                    templateUrl: "partials/state2.list.html",
-                    controller: function($scope) {
-                        $scope.things = ["A", "Set", "Of", "Things"];
-                    }
-                });
-    });
-
 </script>
+<script src="js/appRouter.js"></script>
 </body>
 </html>

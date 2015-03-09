@@ -1,19 +1,5 @@
-var labelType, useGradients, nativeTextSupport, animate;
-
 (function() {
-    var ua = navigator.userAgent,
-        iStuff = ua.match(/iPhone/i) || ua.match(/iPad/i),
-        typeOfCanvas = typeof HTMLCanvasElement,
-        nativeCanvasSupport = (typeOfCanvas == 'object' || typeOfCanvas == 'function'),
-        textSupport = nativeCanvasSupport
-            && (typeof document.createElement('canvas').getContext('2d').fillText == 'function');
-    //I'm setting this based on the fact that ExCanvas provides text support for IE
-    //and that as of today iPhone/iPad current text support is lame
-    labelType = (!nativeCanvasSupport || (textSupport && !iStuff))? 'Native' : 'HTML';
-    nativeTextSupport = labelType == 'Native';
-    useGradients = nativeCanvasSupport;
-    animate = !(iStuff || !nativeCanvasSupport);
-
+    jitInit();
 })();
 
 
@@ -864,27 +850,6 @@ function jitInit(){
     st.geom.translate(new $jit.Complex(-200, 0), "current");
     //emulate a click on the root node.
     st.onClick(st.root);
-    //end
-    //Add event handlers to switch spacetree orientation.
-    var top = $jit.id('r-top'),
-        left = $jit.id('r-left'),
-        bottom = $jit.id('r-bottom'),
-        right = $jit.id('r-right'),
-        normal = $jit.id('s-normal');
-
-
-    function changeHandler() {
-        if(this.checked) {
-            top.disabled = bottom.disabled = right.disabled = left.disabled = true;
-            st.switchPosition(this.value, "animate", {
-                onComplete: function(){
-                    top.disabled = bottom.disabled = right.disabled = left.disabled = false;
-                }
-            });
-        }
-    };
-
-//    top.onchange = left.onchange = bottom.onchange = right.onchange = changeHandler;
     //end
 
 }

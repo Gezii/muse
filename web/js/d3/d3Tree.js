@@ -2,7 +2,7 @@
  * Created by Gezii on 2015/3/4.
  */
 // Get JSON data
-treeJSON = d3.json("app/js/d3Tree.json", function(error, treeData) {
+treeJSON = d3.json("js/d3/d3Tree.json", function(error, treeData) {
 
     // Calculate total nodes, max label length
     var totalNodes = 0;
@@ -19,7 +19,7 @@ treeJSON = d3.json("app/js/d3Tree.json", function(error, treeData) {
     var root;
 
     // size of the diagram
-    var viewerWidth = 1000;
+    var viewerWidth = 950;
     var viewerHeight = 600;
 
     var tree = d3.layout.tree()

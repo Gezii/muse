@@ -50,14 +50,14 @@ setTimeout(function(){
     left = parseInt(div.style.marginLeft) + 1;
     div.style.marginLeft = left + "px";
 
-    if(left < 1194){
+    if(left < 900){
         setTimeout(arguments.callee, 5);
     }
 }, 5);
 
 
 var chunkData = [12,123,233,342,355,2342,677,6874,3345,9776,67568,4353,45,53,34534,4664,2353,
-    12,123,233,342,355,2342,677,6874,3345,9776,67568,4353,45,53,34534,4664,2353];
+    12,123,233,342,355,2342,677,6874,3345,9776,67568];
 
 chunk(chunkData.concat(), function(item){
     var div = document.getElementById("chunkDiv");
