@@ -3,7 +3,7 @@
  */
 require.config({
     paths: {
-        echarts: '../../js/lib/echarts'
+        echarts: './js/lib/echarts'
     }
 });
 require(
@@ -14,7 +14,6 @@ require(
     function (ec) {
         var myChart = ec.init(document.getElementById('map1'));
         var option = {
-            backgroundColor: '#1b1b1b',
             color: ['gold','aqua','lime'],
             title : {
                 text: '模拟迁徙',
