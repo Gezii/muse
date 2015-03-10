@@ -737,15 +737,17 @@
         //id of viz container element
         injectInto: 'tree-container',
         //set duration for the animation
-        duration: 800,
+        duration: 500,
         //set animation transition type
         transition: $jit.Trans.Quart.easeInOut,
         //set distance between node and its children
         levelDistance: 50,
+        levelsToShow : 1,   //每次点击时显示下级节点的层级个数
         //enable panning
         Navigation: {
             enable:true,
-            panning:true
+            panning:true,
+            zooming:30      //Set this property to a numeric value to turn mouse-scroll zooming on.  The number will be proportional to the mouse-scroll sensitivity.
         },
         //set node and edge styles
         //set overridable=true for styling individual
@@ -754,13 +756,29 @@
             height: 20,
             width: 120,
             type: 'rectangle',
-            color: '#aaa',
+            color: '#9FCCFF',
+            alpha : 1,      //节点的透明度，
             overridable: true
         },
 
         Edge: {
             type: 'bezier',
+            color : '#D7EEFE',
+            lineWidth : 3,
+            CanvasStyles: {         //	(object) Default’s an empty object (i.e.  {}).  Attach any other canvas specific property that you’d set to the canvas context before plotting an Edge.
+                shadowColor: '#ccc',
+                shadowBlur: 10
+            },
             overridable: true
+        },
+        Tips: {
+            enable: true,
+            type: 'auto',
+            offsetX: 20,
+            offsetY: 20,
+            onShow: function(tip, node) {
+                tip.innerHTML = node.name;
+            }
         },
 
         onBeforeCompute: function(node){
@@ -804,7 +822,7 @@
             //add some color to the nodes in the path between the
             //root node and the selected node.
             if (node.selected) {
-                node.data.$color = "#ff7";
+                node.data.$color = "#469DFF";
             }
             else {
                 delete node.data.$color;
@@ -815,7 +833,7 @@
                     node.eachSubnode(function(n) { count++; });
                     //assign a node color based on
                     //how many children it has
-                    node.data.$color = ['#aaa', '#baa', '#caa', '#daa', '#eaa', '#faa'][count];
+                    node.data.$color = ['#9FCCFF', '#9FCCFF', '#9FCCFF', '#9FCCFF', '#9FCCFF', '#9FCCFF'][count];
                 }
             }
         },
@@ -827,7 +845,7 @@
         //override the Edge global style properties.
         onBeforePlotLine: function(adj){
             if (adj.nodeFrom.selected && adj.nodeTo.selected) {
-                adj.data.$color = "#eed";
+                adj.data.$color = "#469DFF";
                 adj.data.$lineWidth = 3;
             }
             else {
@@ -842,9 +860,18 @@
         //compute node positions and layout
         st.compute();
         //optional: make a translation of the tree
-        st.geom.translate(new $jit.Complex(-200, 0), "current");
+//        st.geom.translate(new $jit.Complex(-200, 0), "current");
         //emulate a click on the root node.
-        st.onClick(st.root);
+        st.onClick(st.root,{
+            Move: {
+                enable: true,
+                offsetX: 200,
+                offsetY: 0
+            },
+            onComplete: function() {
+//                alert('yay!');
+            }
+        });
         //end
     }
     jitInit();
