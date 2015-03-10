@@ -1,9 +1,4 @@
-(function() {
-    jitInit();
-})();
-
-
-function jitInit(){
+(function(window, $) {
     //init data
     var json = {
         id: "node02",
@@ -736,7 +731,6 @@ function jitInit(){
             }]
         }]
     };
-    //end
     //init Spacetree
     //Create a new ST instance
     var st = new $jit.ST({
@@ -770,11 +764,11 @@ function jitInit(){
         },
 
         onBeforeCompute: function(node){
-//            Log.write("loading " + node.name);
+            $(".btn").addClass("disabled");
         },
 
         onAfterCompute: function(){
-//            Log.write("done");
+            $(".btn").removeClass("disabled");
         },
 
         //This method is called on DOM label creation.
@@ -785,7 +779,7 @@ function jitInit(){
             label.innerHTML = node.name;
             label.onclick = function(){
 //                if(normal.checked) {
-                    st.onClick(node.id);
+                st.onClick(node.id);
 //                } else {
 //                    st.setRoot(node.id, 'animate');
 //                }
@@ -842,14 +836,38 @@ function jitInit(){
             }
         }
     });
-    //load json data
-    st.loadJSON(json);
-    //compute node positions and layout
-    st.compute();
-    //optional: make a translation of the tree
-    st.geom.translate(new $jit.Complex(-200, 0), "current");
-    //emulate a click on the root node.
-    st.onClick(st.root);
-    //end
+    function jitInit(){
+        //load json data
+        st.loadJSON(json);
+        //compute node positions and layout
+        st.compute();
+        //optional: make a translation of the tree
+        st.geom.translate(new $jit.Complex(-200, 0), "current");
+        //emulate a click on the root node.
+        st.onClick(st.root);
+        //end
+    }
+    jitInit();
 
-}
+    $("#change").on('click',function(){
+        var $this = $(this);
+        var num = $this.data('num');
+        if (num === undefined) {
+            num = 0;
+            $this.data('num', 0);
+        }
+        var arr = ['top', 'bottom', 'right', 'left'];
+
+        $(".btn").addClass("disabled");
+        st.switchPosition(arr[num % 4], "animate", {
+            onComplete: function(){
+                $this.data('num', num+1);
+                $(".btn").removeClass("disabled");
+            }
+        });
+    });
+    $("#reset").on('click',function(){
+        jitInit();
+    });
+
+})(window, jQuery);
