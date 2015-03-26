@@ -32,7 +32,11 @@ appRouter.config(function($stateProvider, $urlRouterProvider) {
             url: "/jitTree",
             templateUrl: "html/jit/jitTree.html"
         })
-    ;
+        .state('svgAnimate', {
+            url: "/svgAnimate",
+            templateUrl: "html/svg/svgAnimate.html"
+        })
+        ;
 });
 
 appRouter.controller('PhoneListCtrl', ['$scope', '$http', function($scope,$http){

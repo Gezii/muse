@@ -1,0 +1,112 @@
+<style>
+    svg {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>
+<h3>SVG力导向图</h3>
+<svg viewBox="-400 -400 800 800">
+    <!--<circle r="50" cx="0" cy="0" fill="green"></circle>-->
+    <path id="links" fill="none" stroke="gray"></path>
+</svg>
+
+
+<script src="./js/svg/vector.js"></script>
+<script>
+    var points = 'a,b,c,d,e,f,g,h'.split(",").map(function(name, index, arr) {
+        return {
+            name : name,
+            color : 'hsl(' + (360 * index / arr.length) + ', 100%, 60%)'
+        };
+    });
+    var relation = 300;     //自然长度，当点之间为这个长度的时候，点之间没有任何引力和弹力
+    var svg = document.querySelector('svg');
+    var k = 0.05;
+
+    var Vector = window.Vector;
+
+    function random(min, max) {
+        return Math.round(min + (max - min) * Math.random());
+    }
+
+    points.forEach(function(point) {
+        var circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        var x = random(-200, 200);
+        var y = random(-200, 200);
+        circle.setAttribute('cx', x);
+        circle.setAttribute('cy', y);
+        circle.setAttribute('r', 10);
+        circle.setAttribute('fill', point.color);
+
+//        var text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+//        text.innerHTML = point.name;
+//        text.setAttribute('fill', 'black');
+//        circle.appendChild(text);
+
+        svg.appendChild(circle);
+
+        point.circle = circle;
+        point.s = new Vector(x, y);     //当前的位移
+        point.v = new Vector();         //默认的速度
+        point.a = new Vector();         //默认的加速度
+
+    });
+
+
+    var lastFrameTime = +new Date();
+
+    function update() {
+        var frameTime = +new Date();
+        var t = frameTime - lastFrameTime;
+
+        t /= 100;
+
+        // 点位置更新
+        points.forEach(function(pa) {
+            var f = new Vector();
+
+            // 计算合力
+            points.forEach(function(pb) {
+                if (pa == pb) return;
+
+                var x = Vector.fromPoints(pa.s, pb.s);  //位置矢量
+                var delta = x.length() - relation;      //弹性变量
+
+                // f = k * x
+                f = f.add(x.normalize(delta * k));      //合力
+            });
+
+            pa.a = f;                                   //当前加速度
+            pa.v = pa.v.add(pa.a.multipy(t)).multipy(0.98);     //当前速度
+            pa.s = pa.s.add(pa.v.multipy(t));           //当前位移
+
+            pa.circle.setAttribute('cx', pa.s.x);
+            pa.circle.setAttribute('cy', pa.s.y);
+        });
+
+        // 连线更新
+        var linkPath = [];
+        points.forEach(function(pa) {
+            var sa = pa.s;
+            points.forEach(function(pb) {
+                if (pa == pb) return;
+                var sb = pb.s;
+                linkPath = linkPath.concat([
+                        'M', sa.x, sa.y,
+                        'L', sb.x, sb.y
+                ])
+
+            }) ;
+        });
+        document.getElementById('links').setAttribute('d', linkPath.join(" "));
+
+        lastFrameTime = frameTime;
+        window.requestAnimationFrame(update);
+    }
+
+    window.requestAnimationFrame(update);
+
+
+</script>
