@@ -9,6 +9,7 @@
     <li>Animate</li>
     <li>d3.js</li>
     <li>jit.js</li>
+    <li>SVG力导向图</li>
     <li>html2canvas</li>
 </ul>
 
