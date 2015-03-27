@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Star</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <img id="space" src="./space02.jpg" width="100%" height="100%"/>
+    <!--<div>-->
+        <canvas id="canvas" width="1200" height="800px" style="position: absolute;left: 0; top: 0; background-color: transparent;"></canvas>
+    <!--</div>-->
+
+<script>
+
+    window.requestAnimFrame = (function() {
+        return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+                function( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element) {
+                    return window.setTimeout(callback, 1000 / 60);
+                };
+    })();
+
+    (function(window){
+
+        var can, ctx, cWidth, cHeight;
+        var lastTime, nowTime, deltaTime;
+        var spacePic = new Image();
+        var starPic = new Image();
+        var num = 100;
+        var stars = [];
+
+        function Star(x, y){
+            this.x = x || 400;
+            this.y = y || 400;
+            this.timer = 0;
+            this.picNum = 0;
+        };
+        Star.prototype.init = function(w, h) {
+            this.x = Math.random() * w;
+            this.y = Math.random() * h;
+            this.timer = 0;
+            this.picNum = Math.floor(Math.random() * 7);
+        };
+        Star.prototype.update = function(deltaTime){
+            this.x += Math.random() * 2 - 1;
+            this.y += Math.random() * 2 - 1;
+            this.timer += deltaTime;
+
+            if (this.timer > 30) {
+                this.picNum++;
+                this.picNum %= 7;
+                this.timer = 0;
+            }
+        };
+        Star.prototype.draw = function() {
+            ctx.save();
+            ctx.drawImage(starPic, this.picNum * 7, 0, 7, 7, this.x, this.y, 7, 7);
+            ctx.restore();
+        };
+
+
+        var FlyStar = {
+            init : function() {
+                can = window.document.getElementById("canvas");
+                ctx = can.getContext("2d");
+                cWidth = can.width = document.body.clientWidth;
+                cHeight = can.height = document.body.clientHeight;
+
+                for (var i = 0; i < num; i++){
+                    stars[i] = new Star();
+                    stars[i].init(cWidth, cHeight);
+                }
+
+                spacePic.src = "./space02.jpg";
+                starPic.src = "./star.png";
+
+
+                lastTime = +new Date();
+                this.starLoop();
+            },
+
+            starLoop : function(){
+                window.requestAnimFrame(FlyStar.starLoop);
+                nowTime = +new Date();
+                deltaTime = nowTime - lastTime;
+                lastTime = nowTime;
+//                spacePic.onload = function() {
+                    ctx.drawImage(spacePic, 0, 0, cWidth, cHeight);
+//                };
+                for (var i = 0, len = stars.length; i < len; i++){
+                    stars[i].update(deltaTime);
+                    stars[i].draw();
+                }
+            }
+        };
+
+        window.FlyStar = FlyStar;
+    })(window);
+
+    document.onload = FlyStar.init();
+
+</script>
+</body>
+</html>
