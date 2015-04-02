@@ -13,11 +13,12 @@
     </style>
 </head>
 <body>
-    <img id="space" src="./space02.jpg" width="100%" height="100%"/>
+    <!--<img id="space" src="./space02.jpg" width="100%" height="100%"/>-->
     <!--<div>-->
         <canvas id="canvas" width="1200" height="800px" style="position: absolute;left: 0; top: 0; background-color: transparent;"></canvas>
     <!--</div>-->
 
+<script src="../../js/svg/vector.js"></script>
 <script>
 
     window.requestAnimFrame = (function() {
@@ -41,22 +42,29 @@
             this.y = y || 400;
             this.timer = 0;
             this.picNum = 0;
+            this.speed = "";
         };
-        Star.prototype.init = function(w, h) {
-            this.x = Math.random() * w;
-            this.y = Math.random() * h;
+        Star.prototype.init = function() {
+            this.x = 888;       // 依照具体图片而定
+            this.y = 488;       // 依照具体图片而定
             this.timer = 0;
             this.picNum = Math.floor(Math.random() * 7);
+            this.speed = new Vector(Math.random() * 2 - 1, Math.random() * 2 - 1)
         };
         Star.prototype.update = function(deltaTime){
-            this.x += Math.random() * 2 - 1;
-            this.y += Math.random() * 2 - 1;
+            this.x += this.speed.x;
+            this.y += this.speed.y;
             this.timer += deltaTime;
 
             if (this.timer > 30) {
                 this.picNum++;
                 this.picNum %= 7;
                 this.timer = 0;
+            }
+
+            if ((this.x < 0 || this.y < 0) || (this.x > document.body.clientWidth
+                    || this.y > document.body.clientHeight)) {
+                this.init();    // 超出屏幕就重新初始化
             }
         };
         Star.prototype.draw = function() {
