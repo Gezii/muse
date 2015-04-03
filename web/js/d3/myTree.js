@@ -6,19 +6,21 @@
 ;(function(window,d3){
 
     var dd = {
-        "name": Math.random() * 10+"",
-        "children": [
-        {
-            "name": Math.random() * 10+"",
-            "children": []
-        }, {
-            "name": Math.random() * 10+"",
-            "children": []
-        }, {
-            "name": Math.random() * 10+"",
-            "children": []
-        }]
+        "name": "http://www." + Math.random() * 10 + ".com",
+        "pv" : Math.ceil(Math.random() * 10000),
+        "bn" : Math.ceil(Math.random() * 800),
+        "children": []
     };
+    var randomCount = Math.ceil(Math.random() * 100);
+
+    for (i = 0; i < randomCount; i++){
+        dd.children.push({
+            "name": "http://www." + Math.random() * 10 + ".com",
+            "pv" : Math.ceil(Math.random() * 10000),
+            "bn" : Math.ceil(Math.random() * 800),
+            "children": []
+        })
+    }
 
     var maxLabelLength = 0;
     var viewerWidth = 950;
@@ -33,6 +35,16 @@
         .attr("height", viewerHeight)
         .attr("class", "overlay")
         .call(zoomListener);
+
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0])
+        .html(function(d) {
+            return "<strong>URL:</strong> <span style='color:red'>" + d.name + "</span></br>"
+                  + "<strong>PV:</strong> <span style='color:red'>" + d.pv + "</span></br>"
+                  + "<strong>BN:</strong> <span style='color:red'>" + d.bn + "</span></br>";
+        });
+    baseSvg.call(tip);
 
     var svgGroup = baseSvg.append("g");
     var tree = d3.layout.tree()
@@ -67,7 +79,7 @@
         var scale = zoomListener.scale();
         var x = -source.y0;
         var y = -source.x0;
-        x = x * scale + 150;
+        x = x * scale + 200;
         y = y * scale + viewerHeight / 2;
         d3.select('g').transition()
             .duration(duration)
@@ -96,7 +108,9 @@
             };
             for (i = 0; i < randomCount; i++){
                 node.children.push({
-                    "name": Math.random() * 10+"",
+                    "name": "http://www." + Math.random() * 10 + ".com",
+                    "pv" : Math.ceil(Math.random() * 10000),
+                    "bn" : Math.ceil(Math.random() * 800),
                     "children": []
                 })
             }
@@ -110,6 +124,23 @@
     }
 
     function init(source){
+
+        var levelWidth = [1];
+        var childCount = function(level, n) {
+
+            if (n.children && n.children.length > 0) {
+                if (levelWidth.length <= level + 1) levelWidth.push(0);
+
+                levelWidth[level + 1] += n.children.length;
+                n.children.forEach(function(d) {
+                    childCount(level + 1, d);
+                });
+            }
+        };
+        childCount(0, root);
+        var newHeight = d3.max(levelWidth) * 25; // 25 pixels per line
+//        newHeight = newHeight > viewerHeight ? viewerHeight : newHeight;
+        tree = tree.size([newHeight, viewerWidth]);
 
         var nodes = tree.nodes(root).reverse(),
             links = tree.links(nodes);
@@ -130,7 +161,9 @@
             .attr("transform", function(d) {
                 return "translate(" + source.y0 + "," + source.x0 + ")";
             })
-            .on('click', onNodeClick);
+            .on('click', onNodeClick)
+            .on('mouseover', tip.show)
+            .on('mouseout', tip.hide);
 
         nodeEnter.append("circle")
             .attr('class', 'nodeCircle')
