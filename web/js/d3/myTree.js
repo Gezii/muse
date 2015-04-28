@@ -39,6 +39,7 @@
     var tip = d3.tip()
         .attr('class', 'd3-tip')
         .offset([-10, 0])
+        .direction('se')
         .html(function(d) {
             return "<strong>URL:</strong> <span style='color:red'>" + d.name + "</span></br>"
                   + "<strong>PV:</strong> <span style='color:red'>" + d.pv + "</span></br>"
