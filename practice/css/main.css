@@ -148,3 +148,98 @@ body {
 	height: 310px;
 	overflow: hidden;
 }
+
+.main {
+	height: 250px;
+	background-color: #fff;
+	margin-top: 5px;
+}
+
+.news {
+	width: 340px;
+	border: 1px solid #e8e8e8;
+}
+
+.course {
+	width: 410px;
+	border: 1px solid #e8e8e8;
+	margin: 0 7px;
+}
+
+.sidebar {
+	width: 230px;
+}
+
+.news,.course,.sidebar {
+	height: 250px;
+	float: left;
+}
+
+.title {
+	height: 35px;
+	border-bottom: 2px solid #e8e8e8;
+}
+
+.title_left {
+	width: 70%;
+	font-family: "微软雅黑";
+	font-size: 14px;
+	font-weight: bold;
+	color: #786f66;
+	float: left;
+	line-height: 35px;
+	padding-left: 20px;
+}
+
+.title_right {
+	width: 20%;
+	float: right;
+	line-height: 35px;
+}
+
+.title_right a {
+	color: #999999;
+	text-decoration: none;
+}
+
+.pic_news {
+	height: 80px;
+	margin-top: 10px;
+	line-height: 22px;
+}
+
+.pic_news img {
+	float: left;
+	margin: 0 5px;
+}
+
+.pic_news a {
+	color: #c00;
+	text-decoration: none;
+}
+
+.news_list {
+	margin-top: 20px;
+}
+
+.news_list li {
+	list-style-type: none;
+	background: url(../images/list.jpg) no-repeat;
+	padding-left: 10px;
+	margin: 8px;
+	border-bottom: 1px dotted #ccc;
+}
+
+.news_list a:link,.news_list a:visited {
+	text-decoration: none;
+	color: #000;
+}
+.news_list a:hover,.news_list a:active {
+	text-decoration: none;
+	color: #f00;
+}
+
+.news_list span {
+	color: #999;
+	float: right;
+}
