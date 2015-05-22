@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<script type="text/javascript" src="js/setHomeSetFav.js" charset="gb2312"></script>
+</head>
+<body>
+<div class="top">
+	<div class="top_content">
+		<ul>
+			<li><a href="#">联系我们</a></li>
+			<li><a href="#" onclick="AddFavorite(window.location,document.title);">加入收藏</a></li>
+			<li><a href="#" onclick="SetHome(window.location);">设为首页</a></li>
+		</ul>
+	</div>
+</div>	<!-- top end -->
+<div class="wrap">
+	<div class="logo">
+		<div class="logo_left">
+			<img src="images/logo.jpg" alt="慕课网">
+		</div>
+		<div class="logo_right">
+			<img src="images/tel.jpg" alt="服务热线">24小时服务热线：<span class="tel">123-456-7890</span>
+		</div>
+	</div>	<!-- logo end -->
+	<div class="nav">
+		<div class="nav_left"></div>
+		<div class="nav_mid">
+			<div class="nav_mid_left">
+				<ul>
+					<li><a href="#">首页</a></li>
+					<li><a href="list.html">关于慕课</a></li>
+					<li><a href="list.html">新闻动态</a></li>
+					<li><a href="list.html">课程中心</a></li>
+					<li><a href="list.html">在线课程</a></li>
+					<li><a href="list.html">人才招聘</a></li>
+				</ul>
+			</div>
+			<div class="nav_mid_right">
+				<form action="" method="post">
+					<input type="text" class="search_text"/>
+				</form>
+			</div>
+		</div>	<!-- nav_mid end -->
+		<div class="nav_right"></div>
+	</div>	<!-- nav end -->
+</div>	<!-- wrap end -->
+</body>
+</html>
